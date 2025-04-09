@@ -75,17 +75,17 @@
         const savedTheme = localStorage.getItem('theme') || 'light';
         if (savedTheme === 'dark') {
             body.classList.add('dark-mode');
-            themeToggle.innerHTML = '&#128065;'; // Open oog
+            themeToggle.innerHTML = '&#x1F31E;';  
         } else {
-            themeToggle.innerHTML = '&#128064;'; // Dicht oog (of gebruik weer &#128065; als je maar één icoon wilt)
+            themeToggle.innerHTML = '&#x1F319;';  
         }
     
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const isDarkMode = body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            themeToggle.innerHTML = isDarkMode ? '&#128065;' : '&#128064;';
+            themeToggle.innerHTML = isDarkMode ? '&#x1F31E;' : '&#x1F319;';
         });
-    </script>
+    </script>>
 </body>
 </html>

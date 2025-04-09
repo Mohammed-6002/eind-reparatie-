@@ -244,7 +244,12 @@ function updateScoreDisplay() {
 }
 
 function updateLivesDisplay() {
-  elements.livesElement.innerHTML = '❤️'.repeat(game.lives) + '♡'.repeat(3 - game.lives);
+  const filledHeart = '&#x2764; &#xFE0F; '; 
+  const emptyHeart = '&#x2661;';          
+  
+  elements.livesElement.innerHTML = 
+    filledHeart.repeat(game.lives) + 
+    emptyHeart.repeat(3 - game.lives);
 }
 
 function updateTimerDisplay() {
@@ -385,7 +390,7 @@ function toggleTheme() {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  elements.themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+  elements.themeToggle.innerHTML = isDarkMode ? '&#x1F31E;' : '&#x1F319;'; 
 }
 
 // Initialize theme
@@ -393,16 +398,16 @@ function initTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    elements.themeToggle.textContent = '🌞';
+    elements.themeToggle.innerHTML = '&#x1F31E;'; 
   } else {
-    elements.themeToggle.textContent = '🌙';
+    elements.themeToggle.innerHTML = '&#x1F319;'; 
   }
 }
 
 // Toggle game mode
 function toggleGameMode() {
   game.gameMode = game.gameMode === 'timed' ? 'untimed' : 'timed';
-  elements.modeToggle.textContent = game.gameMode === 'timed' ? '⏱️' : '∞';
+  elements.modeToggle.textContent = game.gameMode === 'timed';
   elements.timerElement.style.display = game.gameMode === 'timed' ? 'block' : 'none';
 }
 
