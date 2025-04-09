@@ -24,7 +24,7 @@ header {
     align-items: center;
     justify-content: center;
     padding: 15px;
-    background: linear-gradient(-45deg, #000000, #00aeff, #000000, #00aeff);
+    background: linear-gradient(-45deg, #00aeff, #000000, #00aeff, #000000);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     position: relative;
@@ -34,10 +34,6 @@ header {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-.hidden {
-    display: none !important;
 }
 
 .logo img {
@@ -70,40 +66,49 @@ main {
     width: 100%;
 }
 
-.regels-container {
-    background: linear-gradient(-45deg, #000000, #00aeff, #000000, #00aeff);
+.over-container {
+    background: linear-gradient(-45deg, #00aeff, #000000, #00aeff, #000000);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     color: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
 }
 
-.regels-container h2 {
+.over-container h2 {
     text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.over-container h3 {
+    margin: 20px 0 10px;
+    color: #ffcc00;
+}
+
+.over-container p {
     margin-bottom: 15px;
-    color: white;
+    line-height: 1.6;
 }
 
-.regels-container h3 {
-    margin: 15px 0 10px;
-    color: white;
-}
-
-.regels-container ul {
+.over-container ul {
     margin-left: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.regels-container li {
+.over-container li {
     margin-bottom: 8px;
-    color: white;
+}
+
+.over-container a {
+    color: #00aeff;
+    text-decoration: none;
 }
 
 footer {
     display: flex;
     justify-content: space-around;
-    background: linear-gradient(-45deg, #000000, #00aeff, #000000, #00aeff);
+    background: linear-gradient(-45deg, #00aeff, #000000, #00aeff, #000000);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     padding: 15px;
@@ -136,14 +141,33 @@ body.light-mode {
     color: #333333;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
     main {
         padding: 15px;
+    }
+    
+    .over-container {
+        padding: 20px;
     }
     
     footer {
         flex-direction: column;
         align-items: center;
         gap: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .logo img {
+        max-width: 120px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .over-container {
+        padding: 15px;
     }
 }

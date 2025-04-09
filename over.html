@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over de Quiz</title>
+    <link rel="stylesheet" href="css/over.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><img src="img/Quiz-Logo.png" alt="Quiz Logo"></div>
+            <h1>Computer Science Quiz</h1>
+            <div class="theme-toggle" id="themeToggle">🌙</div>
+        </header>
+        <main>
+            <div class="over-container">
+                <h2>Over deze Quiz</h2>
+                <div class="over-content">
+                    <section>
+                        <h3>Doel van de Quiz</h3>
+                        <p>Deze quiz is ontwikkeld om studenten te helpen hun kennis van computerwetenschappen te testen en verbeteren. Met meer dan 100 vragen kun je jezelf uitdagen op verschillende niveaus.</p>
+                    </section>
+
+                    <section>
+                        <h3>Ontwikkeld door</h3>
+                        <p>Deze website is gemaakt in opdracht van ROC Mondriaan als educatief hulpmiddel voor studenten Informatica.</p>
+                    </section>
+
+                    <section>
+                        <h3>Quiz Features</h3>
+                        <ul>
+                            <li>100+ vragen over diverse onderwerpen</li>
+                            <li>3 levens per spel</li>
+                            <li>Handige power-ups om je te helpen</li>
+                            <li>Highscore systeem</li>
+                            <li>Werkt op pc, tablet en mobiel</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Contact</h3>
+                        <p>Voor vragen of suggesties kun je mailen naar: <a href="302352550@student.rocmondriaan.nl">302352550@student.rocmondriaan.nl</a></p>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="info">
+                <h3>Quiz Info</h3>
+                <a href="regels.html">Regels</a>
+                <a href="over.html">Over</a>
+                <a href="credits.html">Credits</a>
+                <a href="index.html">Home</a>
+            </div>
+            <div class="links">
+                <h3>CS Links</h3>
+                <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+                <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>
+                <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a>
+            </div>
+            <div class="news">
+                <h3>Tech Nieuws</h3>
+                <a href="https://technieuws.com/" target="_blank">TechNieuws</a>
+                <a href="https://tweakers.net/" target="_blank">Tweakers</a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Theme toggle functionaliteit
+        const themeToggle = document.querySelector('#themeToggle');
+        const body = document.body;
+        
+        // Controleer opgeslagen thema
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '🌞';
+        }
+        
+        // Toggle thema
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        });
+    </script>
+</body>
+</html>

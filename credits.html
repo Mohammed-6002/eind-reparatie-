@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - Computer Science Quiz</title>
+    <link rel="stylesheet" href="css/credits.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><img src="img/Quiz-Logo.png" alt="Quiz Logo"></div>
+            <h1>Computer Science Quiz</h1>
+            <div class="theme-toggle" id="themeToggle">🌙</div>
+        </header>
+        <main>
+            <div class="credits-container">
+                <h2>Credits</h2>
+                <div class="credits-content">
+                    <section>
+                        <h3>Wie heeft dit gemaakt?</h3>
+                        <p>Deze quiz is gemaakt door het ICT-team van ROC Mondriaan.</p>
+                    </section>
+
+                    <section>
+                        <h3>Dankjewel</h3>
+                        <p>Bedankt aan alle studenten die hebben geholpen met testen!</p>
+                    </section>
+
+                    <section>
+                        <h3>Copyright</h3>
+                        <p>© 2025 ROC Mondriaan</p>
+                        <p>Deze quiz is voor school en mag niet gekopieerd worden.</p>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="info">
+                <h3>Quiz Info</h3>
+                <a href="regels.html">Regels</a>
+                <a href="over.html">Over</a>
+                <a href="credits.html">Credits</a>
+                <a href="index.html">Home</a>
+            </div>
+            <div class="links">
+                <h3>CS Links</h3>
+                <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+                <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>
+                <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a>
+            </div>
+            <div class="news">
+                <h3>Tech Nieuws</h3>
+                <a href="https://technieuws.com/" target="_blank">TechNieuws</a>
+                <a href="https://tweakers.net/" target="_blank">Tweakers</a>
+            </div>
+        </footer>
+        <script>
+            // Theme toggle functionaliteit
+            const themeToggle = document.querySelector('#themeToggle');
+            const body = document.body;
+            
+            // Controleer opgeslagen thema
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '🌞';
+            }
+            
+            // Toggle thema
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+            });
+        </script>
+    </div>
+</body>
+</html>
