@@ -312,7 +312,7 @@ function showAchievement(message) {
   achievement.className = 'achievement';
   achievement.textContent = `Achievement: ${message}`;
   document.body.appendChild(achievement);
-  setTimeout(() => achievement.remove(), 3000);
+  setTimeout(() => achievement.remove(), 2000);
 }
 
 // End game
