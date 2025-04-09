@@ -56,23 +56,22 @@
             </div>
         </footer>
         <script>
-            // Theme toggle functionaliteit
             const themeToggle = document.querySelector('#themeToggle');
             const body = document.body;
-            
-            // Controleer opgeslagen thema
+        
             const savedTheme = localStorage.getItem('theme') || 'light';
             if (savedTheme === 'dark') {
                 body.classList.add('dark-mode');
-                themeToggle.textContent = '🌞';
+                themeToggle.innerHTML = '&#128065;'; // Open oog
+            } else {
+                themeToggle.innerHTML = '&#128064;'; // Dicht oog (of gebruik weer &#128065; als je maar één icoon wilt)
             }
-            
-            // Toggle thema
+        
             themeToggle.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
                 const isDarkMode = body.classList.contains('dark-mode');
                 localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-                themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+                themeToggle.innerHTML = isDarkMode ? '&#128065;' : '&#128064;';
             });
         </script>
     </div>
