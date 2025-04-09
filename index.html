@@ -3,49 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Pagina</title>
+    <title>Computerwetenschappen Quiz</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo"><img src="img/Quiz-Logo.png" alt=""></div>
-            <h1>Quizs</h1>
-            <div class="theme-toggle">&#128065;</div>
+            <div class="logo"><img src="img/Quiz-Logo.png" alt="Quiz Logo"></div>
+            <h1>Computerwetenschappen Quiz</h1>
+            <div class="theme-toggle" id="themeToggle">🌓</div>
         </header>
         <nav class="menu">
-            <button>Nieuwe Spel</button>
-            <button>High Scores</button>
-            <button>Save</button>
-            <button>Load</button>
+            <button id="newGameBtn">Nieuw Spel</button>
+            <button id="highScoresBtn">High Scores</button>
+            <button id="saveBtn">Opslaan</button>
+            <button id="loadBtn">Laden</button>
+            <button id="rulesBtn">Spelregels</button>
         </nav>
         <main>
-            <div class="quiz-container">
-                <h2>Vraag?</h2>
-                <div class="answers">
-                    <button>Antw. 1</button>
-                    <button>Antw. 2</button>
-                    <button>Antw. 3</button>
-                    <button>Antw. 4</button>
+            <div class="quiz-container" id="quizContainer">
+                <div class="game-info">
+                    <span id="lives">❤️❤️❤️</span>
+                    <span id="score">Score: 0</span>
+                    <span id="timer">Tijd: 30s</span>
+                    <span id="progress">Vraag 1/100</span>
                 </div>
+                <div class="question-container">
+                    <h2 id="question">Klik op 'Nieuw Spel' om te beginnen</h2>
+                    <div class="answers" id="answers">
+                        <!-- Answers will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                <div class="powerups">
+                    <button class="powerup-btn" data-powerup="double">2× Score</button>
+                    <button class="powerup-btn" data-powerup="fiftyfifty">50/50</button>
+                    <button class="powerup-btn" data-powerup="heal">Leven +1</button>
+                </div>
+                <button id="nextBtn" class="hidden">Volgende Vraag</button>
+            </div>
+            <div class="game-over hidden" id="gameOver">
+                <h2>Game Over!</h2>
+                <p>Je score: <span id="finalScore">0</span></p>
+                <p>Highscore: <span id="highscoreDisplay">0</span></p>
+                <button id="restartBtn">Opnieuw Spelen</button>
             </div>
         </main>
         <footer>
             <div class="info">
-                <a href="#">Regels</a>
-                <a href="#">Over</a>
-                <a href="#">Credits</a>
+                <h3>Quiz Info</h3>
+                <a href="regels.html">Regels</a>
+                <a href="over.html">Over</a>
+                <a href="credits.html">Credits</a>
+                <a href="index.html">Home</a>
             </div>
             <div class="links">
                 <h3>CS Links</h3>
-                <a href="https://www.w3schools.com/">W3Schools</a>
-                <a href="https://stackoverflow.com/">Stack Overflow</a>
+                <a href="https://www.w3schools.com/" target="_blank">W3Schools</a>
+                <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a>
+                <a href="https://developer.mozilla.org/" target="_blank">MDN Web Docs</a>
             </div>
             <div class="news">
                 <h3>Tech Nieuws</h3>
-                <a href="https://technieuws.com/">TechNieuws</a>
+                <a href="https://technieuws.com/" target="_blank">TechNieuws</a>
+                <a href="https://tweakers.net/" target="_blank">Tweakers</a>
             </div>
         </footer>
+        <script src="js/main.js"></script>
     </div>
 </body>
 </html>
