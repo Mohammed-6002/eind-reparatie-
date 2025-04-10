@@ -261,7 +261,7 @@ function handleAnswer(selectedIndex) {
     if (game.powerups.double.used) {
       points *= 2;
       game.powerups.double.used = false;
-      game.powerups.double.available = false; // Start cooldown
+      game.powerups.double.available = false; 
       game.powerups.double.questionsSinceUse = 0;
       document.querySelector('.powerup-btn[data-powerup="double"]').disabled = true;
     }
