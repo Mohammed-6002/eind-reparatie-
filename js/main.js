@@ -62,7 +62,6 @@ const questions = [
   {
     question: "Wat is een bestandsformaat voor afbeeldingen?", answers: [".mp3", ".jpg", ".txt", ".html"], correctAnswer: 1
   }
-  // Voeg hier meer vragen toe...
 ];
 
 // Game state
@@ -71,13 +70,13 @@ let game = {
   score: 0,
   lives: 3,
   timer: null,
-  timePerQuestion: 45,
-  timeLeft: 45,
+  timePerQuestion: 20,
+  timeLeft: 20,
   usedQuestions: [],
   powerups: {
-    double: { used: false },    // 2x score - éénmalig
-    fiftyfifty: { used: false }, // 50/50 - éénmalig
-    heal: { used: false }        // +1 leven - éénmalig
+    double: { available: true, used: false },    
+    fiftyfifty: { available: true, used: false }, 
+    heal: { available: true, used: false }         
   },
   achievements: {
     streak3: false, streak5: false, streak10: false, streak15: false, streak25: false,
@@ -244,8 +243,8 @@ function updateScoreDisplay() {
 }
 
 function updateLivesDisplay() {
-  const filledHeart = '&#x2764; &#xFE0F; '; 
-  const emptyHeart = '&#x2661;';          
+  const filledHeart = '&#x2764; '; // Rood hart
+  const emptyHeart = '&#x2661;';    // Wit hart
   
   elements.livesElement.innerHTML = 
     filledHeart.repeat(game.lives) + 
@@ -390,7 +389,7 @@ function toggleTheme() {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  elements.themeToggle.innerHTML = isDarkMode ? '&#x1F31E;' : '&#x1F319;'; 
+  elements.themeToggle.innerHTML = isDarkMode ? '&#x1F319;':'&#x1F31E;' ; 
 }
 
 // Initialize theme
@@ -398,9 +397,9 @@ function initTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    elements.themeToggle.innerHTML = '&#x1F31E;'; 
-  } else {
     elements.themeToggle.innerHTML = '&#x1F319;'; 
+  } else {
+    elements.themeToggle.innerHTML = '&#x1F31E;'; 
   }
 }
 

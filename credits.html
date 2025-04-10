@@ -62,18 +62,18 @@
             const savedTheme = localStorage.getItem('theme') || 'light';
             if (savedTheme === 'dark') {
                 body.classList.add('dark-mode');
-                themeToggle.innerHTML = '&#x1F31E;';  
-            } else {
                 themeToggle.innerHTML = '&#x1F319;';  
+            } else {
+                themeToggle.innerHTML = '&#x1F31E;';  
             }
         
             themeToggle.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
                 const isDarkMode = body.classList.contains('dark-mode');
                 localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-                themeToggle.innerHTML = isDarkMode ? '&#x1F31E;' : '&#x1F319;';
+                themeToggle.innerHTML = isDarkMode ?'&#x1F319;':'&#x1F31E;';
             });
-        </script>
+        </script>>
     </div>
 </body>
 </html>
