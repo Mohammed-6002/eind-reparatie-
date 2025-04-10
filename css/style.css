@@ -92,6 +92,31 @@ h1 {
     transform: scale(1.05);
 }
 
+.achievement {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-weight: bold;
+    text-align: center;
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 1.5s forwards;
+}
+
+@keyframes slideIn {
+    from { top: -50px; opacity: 0; }
+    to { top: 20px; opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
 main {
     padding: 20px;
     display: flex;
@@ -297,3 +322,5 @@ footer h3 {
         align-items: center;
     }
 }
+
+

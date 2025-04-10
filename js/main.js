@@ -61,6 +61,36 @@ const questions = [
   },
   {
     question: "Wat is een bestandsformaat voor afbeeldingen?", answers: [".mp3", ".jpg", ".txt", ".html"], correctAnswer: 1
+  },
+  {
+    question: "Wat is de hoofdtaak van een CPU?", answers: ["Grafieken weergeven", "Gegevens opslaan", "Berekeningen uitvoeren", "Internetverbinding maken"], correctAnswer: 2
+  },
+  {
+    question: "Wat betekent 'CSS'?", answers: ["Computer Style Sheets", "Creative Style System", "Cascading Style Sheets", "Colorful Style Syntax"], correctAnswer: 2
+  },
+  {
+    question: "Welke tag gebruik je voor een lijstitem in HTML?", answers: ["<li>", "<ul>", "<ol>", "<list>"], correctAnswer: 0
+  },
+  {
+    question: "Wat is een boolean?", answers: ["Een geheel getal", "Een tekstwaarde", "Een waar/onwaar waarde", "Een decimaal getal"], correctAnswer: 2
+  },
+  {
+    question: "Hoe declareer je een variabele in JavaScript?", answers: ["variable x;", "var x;", "x = var;", "declare x;"], correctAnswer: 1
+  },
+  {
+    question: "Wat is een loop?", answers: ["Een fout in de code", "Een herhalende structuur", "Een functie", "Een variabele"], correctAnswer: 1
+  },
+  {
+    question: "Wat is GitHub?", answers: ["Een programmeertaal", "Een besturingssysteem", "Een versiebeheersysteem", "Een database"], correctAnswer: 2
+  },
+  {
+    question: "Wat doet de 'if'-statement?", answers: ["Herhaalt code", "Voert code uit onder voorwaarden", "Slaat gegevens op", "Maakt een functie"], correctAnswer: 1
+  },
+  {
+    question: "Wat is een array?", answers: ["Een enkele waarde", "Een verzameling waarden", "Een functie", "Een conditie"], correctAnswer: 1
+  },
+  {
+    question: "Wat is de output van 'console.log(2 + '2')'?", answers: ["4", "22", "NaN", "Error"], correctAnswer: 1
   }
 ];
 
