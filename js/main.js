@@ -332,6 +332,7 @@ function endGame(isWin) {
   clearInterval(game.timer);
   elements.quizContainer.classList.add('hidden');
   elements.gameOverElement.classList.remove('hidden');
+  elements.gameOverElement.querySelector('h2').textContent = isWin ? 'WIN!' : 'Game Over!';
   elements.finalScoreElement.textContent = game.score;
   
   // Update highscore
