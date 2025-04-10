@@ -70,8 +70,8 @@ let game = {
   score: 0,
   lives: 3,
   timer: null,
-  timePerQuestion: 20,
-  timeLeft: 20,
+  timePerQuestion: 10,
+  timeLeft: 10,
   usedQuestions: [],
   powerups: {
     double: { available: true, used: false },    
@@ -117,8 +117,8 @@ function initGame() {
     score: 0,
     lives: 3,
     timer: null,
-    timePerQuestion: 20,
-    timeLeft: 20,
+    timePerQuestion: 10,
+    timeLeft: 10,
     usedQuestions: [],
     powerups: {
       double: { available: true, used: false },
@@ -243,8 +243,8 @@ function updateScoreDisplay() {
 }
 
 function updateLivesDisplay() {
-  const filledHeart = '&#x2764; '; // Rood hart
-  const emptyHeart = '&#x2661;';    // Wit hart
+  const filledHeart = '&#x2764; &#xFE0F; '; 
+  const emptyHeart = '&#x2661;';          
   
   elements.livesElement.innerHTML = 
     filledHeart.repeat(game.lives) + 
@@ -254,7 +254,7 @@ function updateLivesDisplay() {
 function updateTimerDisplay() {
   if (game.gameMode === 'timed') {
     elements.timerElement.textContent = `Tijd: ${game.timeLeft}s`;
-    elements.timerElement.style.color = game.timeLeft < 10 ? 'red' : '';
+    elements.timerElement.style.color = game.timeLeft < 5 ? 'red' : '';
   }
 }
 
@@ -389,7 +389,7 @@ function toggleTheme() {
   document.body.classList.toggle('dark-mode');
   const isDarkMode = document.body.classList.contains('dark-mode');
   localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-  elements.themeToggle.innerHTML = isDarkMode ? '&#x1F319;':'&#x1F31E;' ; 
+  elements.themeToggle.innerHTML = isDarkMode ? '&#x1F31E;' : '&#x1F319;'; 
 }
 
 // Initialize theme
@@ -397,9 +397,9 @@ function initTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    elements.themeToggle.innerHTML = '&#x1F319;'; 
-  } else {
     elements.themeToggle.innerHTML = '&#x1F31E;'; 
+  } else {
+    elements.themeToggle.innerHTML = '&#x1F319;'; 
   }
 }
 
