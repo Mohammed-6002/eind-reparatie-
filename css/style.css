@@ -192,15 +192,43 @@ main {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #FF9800;
+    background-color: #FF8C00; /* Donkerder oranje */
     color: #000;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.powerup-btn:hover:not(:disabled) {
+    background-color: #FFA500; /* Lichter oranje bij hover */
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .powerup-btn:disabled {
-    opacity: 0.5;
+    background-color: #808080; /* Grijs */
+    opacity: 0.7;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.powerup-cooldown {
+    position: relative;
+    overflow: hidden;
+}
+
+.powerup-cooldown::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: rgba(255,255,255,0.5);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform linear;
 }
 
 #nextBtn {

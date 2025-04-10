@@ -104,9 +104,9 @@ let game = {
   timeLeft: 10,
   usedQuestions: [],
   powerups: {
-    double: { available: true, used: false },    
-    fiftyfifty: { available: true, used: false }, 
-    heal: { available: true, used: false }         
+    double: { available: true, used: false, questionsSinceUse: 0 },    
+    fiftyfifty: { available: true, used: false, questionsSinceUse: 0 }, 
+    heal: { available: true, used: false, remainingUses: 3 }         
   },
   achievements: {
     streak3: false, streak5: false, streak10: false, streak15: false, streak25: false,
@@ -151,11 +151,11 @@ function initGame() {
     timeLeft: 10,
     usedQuestions: [],
     powerups: {
-      double: { available: true, used: false },
-      fiftyfifty: { available: true, used: false },
-      heal: { available: true, used: false }
+      double: { available: true, used: false, questionsSinceUse: 0 },
+      fiftyfifty: { available: true, used: false, questionsSinceUse: 0 },
+      heal: { available: true, used: false, remainingUses: 3 }
     },
-    achievements: JSON.parse(JSON.stringify(game.achievements)), // Clone achievements
+    achievements: JSON.parse(JSON.stringify(game.achievements)),
     correctStreak: 0,
     questionsWithoutPowerups: 0,
     gameMode: game.gameMode
@@ -173,6 +173,29 @@ function showQuestion() {
   clearInterval(game.timer);
   game.timeLeft = game.timePerQuestion;
   updateTimerDisplay();
+  
+  // Update powerup cooldowns
+  const powerupTypes = Object.keys(game.powerups);
+  for (let i = 0; i < powerupTypes.length; i++) {
+    const type = powerupTypes[i];
+    if (game.powerups[type].used) {
+      game.powerups[type].questionsSinceUse++;
+      
+      // Update cooldown visual
+      const powerupBtn = document.querySelector(`.powerup-btn[data-powerup="${type}"]`);
+      const cooldownPercent = Math.min(game.powerups[type].questionsSinceUse / 10, 1);
+      powerupBtn.style.setProperty('--cooldown-progress', cooldownPercent);
+      
+      // Reset after cooldown
+      if (type === 'double' && game.powerups[type].questionsSinceUse >= 10) {
+        game.powerups[type].available = true;
+        game.powerups[type].used = false;
+        powerupBtn.disabled = false;
+        powerupBtn.classList.remove('powerup-cooldown');
+        showPowerupAvailable('Double Score is ready!');
+      }
+    }
+  }
   
   if (game.gameMode === 'timed') {
     game.timer = setInterval(() => {
@@ -238,12 +261,22 @@ function handleAnswer(selectedIndex) {
     if (game.powerups.double.used) {
       points *= 2;
       game.powerups.double.used = false;
+      game.powerups.double.available = false; // Start cooldown
+      game.powerups.double.questionsSinceUse = 0;
+      document.querySelector('.powerup-btn[data-powerup="double"]').disabled = true;
     }
     
-    if (game.powerups.heal.used && game.lives < 3) {
+  if (game.powerups.heal.used && game.lives < 3) {
       game.lives++;
+      game.powerups.heal.remainingUses--;
       game.powerups.heal.used = false;
       updateLivesDisplay();
+      
+      // Disable heal if no uses left
+      if (game.powerups.heal.remainingUses <= 0) {
+        game.powerups.heal.available = false;
+        document.querySelector('.powerup-btn[data-powerup="heal"]').disabled = true;
+      }
     }
     
     game.score += points;
@@ -293,10 +326,24 @@ function updateTimerDisplay() {
 
 // Powerup functions
 function usePowerup(type) {
-  if (!game.powerups[type].available || game.powerups[type].used) return;
-  
-  game.powerups[type].used = true;
-  document.querySelector(`.powerup-btn[data-powerup="${type}"]`).disabled = true;
+    const powerupBtn = document.querySelector(`.powerup-btn[data-powerup="${type}"]`);
+    
+    if (!game.powerups[type].available || game.powerups[type].used) {
+        // Visual feedback for unavailable powerup
+        powerupBtn.classList.add('denied');
+        setTimeout(() => powerupBtn.classList.remove('denied'), 500);
+        return;
+    }
+    
+    // Mark powerup as used
+    game.powerups[type].used = true;
+    powerupBtn.disabled = true;
+    powerupBtn.classList.add('powerup-cooldown');
+    
+    // Start cooldown (only for double and fiftyfifty)
+    if (type !== 'heal') {
+      game.powerups[type].questionsSinceUse = 0;
+    }
   
   if (type === 'fiftyfifty') {
     const questionObj = questions[game.currentQuestionIndex];
@@ -340,7 +387,9 @@ function checkAchievements() {
 }
 
 function restorePowerup() {
-  for (const type in game.powerups) {
+  const powerupKeys = Object.keys(game.powerups);
+  for (let i = 0; i < powerupKeys.length; i++) {
+    const type = powerupKeys[i];
     if (!game.powerups[type].available) {
       game.powerups[type].available = true;
       document.querySelector(`.powerup-btn[data-powerup="${type}"]`).disabled = false;
@@ -452,9 +501,11 @@ function toggleGameMode() {
 // Event listeners
 elements.nextBtn.addEventListener('click', showQuestion);
 
-document.querySelectorAll('.powerup-btn').forEach(btn => {
+const powerupButtons = document.querySelectorAll('.powerup-btn');
+for (let i = 0; i < powerupButtons.length; i++) {
+  const btn = powerupButtons[i];
   btn.addEventListener('click', () => usePowerup(btn.dataset.powerup));
-});
+}
 
 elements.newGameBtn.addEventListener('click', initGame);
 elements.restartBtn.addEventListener('click', initGame);
