@@ -171,14 +171,15 @@ function showQuestion() {
   elements.questionElement.textContent = questionObj.question;
   elements.answersContainer.innerHTML = '';
   
-  questionObj.answers.forEach((answer, i) => {
+  for (let i = 0; i < questionObj.answers.length; i++) {
+    const answer = questionObj.answers[i];
     const button = document.createElement('button');
     button.textContent = answer;
     button.className = 'answer-btn';
     button.dataset.index = i;
     button.addEventListener('click', () => handleAnswer(i));
     elements.answersContainer.appendChild(button);
-  });
+  }
   
   elements.progressElement.textContent = `Vraag ${game.usedQuestions.length}/${questions.length}`;
   elements.nextBtn.classList.add('hidden');
@@ -191,11 +192,13 @@ function handleAnswer(selectedIndex) {
   const questionObj = questions[game.currentQuestionIndex];
   const isCorrect = selectedIndex === questionObj.correctAnswer;
   
-  document.querySelectorAll('.answer-btn').forEach((button, i) => {
+  const answerButtons = document.querySelectorAll('.answer-btn');
+  for (let i = 0; i < answerButtons.length; i++) {
+    const button = answerButtons[i];
     button.disabled = true;
     if (i === questionObj.correctAnswer) button.classList.add('correct');
     else if (i === selectedIndex) button.classList.add('wrong');
-  });
+  }
   
   if (isCorrect) {
     let points = 1;
@@ -270,30 +273,35 @@ function usePowerup(type) {
     const wrongAnswers = [0, 1, 2, 3].filter(i => i !== questionObj.correctAnswer);
     const toRemove = wrongAnswers.sort(() => 0.5 - Math.random()).slice(0, 2);
     
-    document.querySelectorAll('.answer-btn').forEach((button, i) => {
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    for (let i = 0; i < answerButtons.length; i++) {
+      const button = answerButtons[i];
       if (toRemove.includes(i)) button.style.visibility = 'hidden';
-    });
+    }
   }
 }
 
 function resetPowerupButtons() {
-  document.querySelectorAll('.powerup-btn').forEach(btn => {
+  const powerupButtons = document.querySelectorAll('.powerup-btn');
+  for (let i = 0; i < powerupButtons.length; i++) {
+    const btn = powerupButtons[i];
     const type = btn.dataset.powerup;
     btn.disabled = !game.powerups[type].available || game.powerups[type].used;
     btn.style.visibility = 'visible';
-  });
+  }
 }
 
 // Check achievements
 function checkAchievements() {
   const streaks = [3, 5, 10, 15, 25];
-  streaks.forEach(s => {
+  for (let i = 0; i < streaks.length; i++) {
+    const s = streaks[i];
     if (game.correctStreak >= s && !game.achievements[`streak${s}`]) {
       game.achievements[`streak${s}`] = true;
       showAchievement(`${s} vragen op rij goed!`);
       if (s === 10) restorePowerup();
     }
-  });
+  }
   
   if (game.questionsWithoutPowerups >= 25 && !game.achievements.noPowerups) {
     game.achievements.noPowerups = true;
