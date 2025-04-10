@@ -1,4 +1,3 @@
-// Quiz data - 100 vragen over computerwetenschappen
 const questions = [
   {
     question: "Wat betekent HTML?", answers: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language", "Hyper Transfer Markup Language"], correctAnswer: 0
