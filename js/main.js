@@ -208,15 +208,15 @@ function showQuestion() {
     }, 1000);
   }
   
-  const availableQuestions = questions.filter((_, i) => !game.usedQuestions.includes(i));
+  const unusedQuestions = questions.filter((q, index) => !game.usedQuestions.includes(index));
   
-  if (availableQuestions.length === 0) {
+  if (unusedQuestions.length === 0) {
     endGame(true);
     return;
   }
   
-  const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-  const questionObj = availableQuestions[randomIndex];
+  const randomIndex = Math.floor(Math.random() * unusedQuestions.length);
+  const questionObj = unusedQuestions[randomIndex];
   game.currentQuestionIndex = questions.indexOf(questionObj);
   game.usedQuestions.push(game.currentQuestionIndex);
   
@@ -423,7 +423,7 @@ function endGame(isWin) {
   // Check for achievements
   if (isWin && !game.achievements.allCorrect) {
     game.achievements.allCorrect = true;
-    showAchievement("Alle vragen correct beantwoord!");
+    showAchievement("Alle vragen zijn beantwoord!");
   }
   
   if (game.score === 0 && !game.achievements.zeroCorrect) {
